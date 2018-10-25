@@ -1,0 +1,41 @@
+body {
+    background: #eee;
+}
+
+.container {
+    margin: auto;
+    padding: 1em;
+    font-family: monospace;
+    font-size: 18px;
+}
+
+input {
+    font-size: inherit;
+}
+
+#inputText {
+    background: inherit;
+    border: none;
+    outline: none;
+    padding: 0.5em;
+    border: 1px solid #eee;
+    width: 95%;
+}
+
+#inputText:focus {
+    background: #fafafa;
+    border: 1px solid #999;
+}
+
+#commandOutput {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.output-item {
+    padding: 10px;
+}
+
+.output-item-error {
+    color: red;
+}
