@@ -9,7 +9,7 @@ const output = $('#commandOutput');
 
 const handler = elementClasses => {
     return message => {
-        const messageSpan = document.createElement('span');
+        const messageSpan = document.createElement('div');
         messageSpan.classList.add(...elementClasses);
         messageSpan.innerText = message + '\n';
         output.appendChild(messageSpan);
