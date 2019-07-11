@@ -29,7 +29,9 @@ input {
 
 #commandOutput {
     overflow-y: scroll;
-    max-height: 200px;
+    min-height: 350px;
+    max-height: 350px;
+    border: 1px solid #999;
 }
 
 .output-item {

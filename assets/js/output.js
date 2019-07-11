@@ -13,6 +13,7 @@ const handler = elementClasses => {
         messageSpan.classList.add(...elementClasses);
         messageSpan.innerText = message + '\n';
         output.appendChild(messageSpan);
+        output.scrollTop = output.scrollHeight;
     };
 };
 
