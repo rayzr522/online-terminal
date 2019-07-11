@@ -71,14 +71,6 @@ function mapToNumbers(args) {
     return args.map(i => parseInt(i)).filter(i => !isNaN(i));
 }
 
-// "Apps"
-[
-    // Add apps here:
-    'SpinTheBottle',
-    'TypingTest',
-    'GoogleClassroom'
-].forEach(app => registerCommand(app, () => window.location = '/app/' + app));
-
 // Math
 registerCommand(['add', '+'], args => mapToNumbers(args).reduce((mem, next) => mem + next, 0));
 registerCommand(['subtract', '-'], args => {
@@ -113,3 +105,5 @@ registerCommand('cat', args => checkArgs(args, 1, 'cat <file>') || sys.fs.readFi
 registerCommand('write', args => checkArgs(args, 1, 'write <file> [contents]') || sys.fs.writeFile(args[0], args.slice(1).join(' ') + '\n'));
 registerCommand('append', args => checkArgs(args, 1, 'append <file> [contents]') || sys.fs.appendFile(args[0], args.slice(1).join(' ') + '\n'));
 registerCommand('rm', args => checkArgs(args, 1, 'rm <path>') || sys.fs.delete(args[0]));
+
+registerCommand('help', () => Object.keys(commands).join('\n'))
