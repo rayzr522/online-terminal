@@ -4,6 +4,8 @@ function FSNode(name, type) {
     this.type = type;
 };
 
+FSNode.nextID = 0;
+
 function deserializeDir(dir) {
     let folder = new FolderNode(dir.name);
 
@@ -62,11 +64,11 @@ FolderNode.prototype.exists = function (name) {
 FolderNode.prototype.add = function (child) {
     if (this.exists(child.name)) {
         return false;
-    };
+    }
 
     if (child.parent) {
         return false;
-    };
+    }
 
     Object.defineProperty(child, 'parent', { value: this });
 
@@ -75,7 +77,7 @@ FolderNode.prototype.add = function (child) {
 };
 
 FolderNode.prototype.remove = function (child) {
-    let index = this.children.findIndex(node => node._id = child._id);
+    let index = this.children.findIndex(node => node._id === child._id);
     if (index > -1) this.children.splice(index, 1);
 };
 
@@ -112,7 +114,7 @@ function FS(root, pwd) {
 
     if (!this.exists(this.pwd) || this.get(this.pwd).type !== 'd') {
         this.pwd = '/';
-    };
+    }
 };
 
 FS.deserialize = function (serialized) {
@@ -133,11 +135,11 @@ FS.prototype._resolve = function (path) {
     while (newPath.startsWith('../')) {
         newPath = newPath.substr(3);
         pwd = Path.dirname(pwd);
-    };
+    }
 
     if (!newPath.startsWith('/')) {
         newPath = Path.join(pwd, newPath);
-    };
+    }
 
     return newPath;
 };
@@ -152,17 +154,17 @@ FS.prototype.get = function (path) {
         let nextName = split.shift();
         if (!nextName) {
             continue;
-        };
+        }
 
         next = next.get(nextName);
         if (!next) {
             return;
-        };
+        }
 
         if (split.length > 0 && next.type !== 'd') {
             return;
-        };
-    };
+        }
+    }
 
     return next;
 };
@@ -174,12 +176,13 @@ FS.prototype.exists = function (path) {
 FS.prototype.touch = function (path) {
     if (this.exists(path)) {
         return;
-    };
+    }
 
     let parent = this.get(Path.dirname(this._resolve(path)));
+
     if (!parent || !parent.type === 'd') {
         return;
-    };
+    }
 
     parent.add(new FileNode(Path.basename(path)))
 };
@@ -187,12 +190,13 @@ FS.prototype.touch = function (path) {
 FS.prototype.mkdir = function (path) {
     if (this.exists(path)) {
         return;
-    };
+    }
 
     let parent = this.get(Path.dirname(this._resolve(path)));
+
     if (!parent || !parent.type === 'd') {
         return;
-    };
+    }
 
     parent.add(new FolderNode(Path.basename(path)));
 };
@@ -202,7 +206,7 @@ FS.prototype.readDir = function (path) {
 
     if (!dir || dir.type !== 'd') {
         return;
-    };
+    }
 
     return dir.children;
 };
@@ -212,7 +216,7 @@ FS.prototype.readFile = function (path) {
 
     if (!file || file.type !== 'f') {
         return;
-    };
+    }
 
     return file.content;
 };
@@ -222,7 +226,7 @@ FS.prototype.writeFile = function (path, content) {
 
     if (!file || file.type !== 'f') {
         return;
-    };
+    }
 
     file.write(content);
 };
@@ -232,16 +236,17 @@ FS.prototype.appendFile = function (path, content) {
 
     if (!file || file.type !== 'f') {
         return;
-    };
+    }
 
     file.append(content);
 };
 
 FS.prototype.delete = function (path) {
     let node = this.get(path);
+
     if (!node || !node.parent) {
         return;
-    };
+    }
 
     node.parent.remove(node);
 };

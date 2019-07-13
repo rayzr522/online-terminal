@@ -17,7 +17,9 @@ window.addEventListener('load', function () {
             handleCommand(input.value);
             input.value = '';
         }
-    })
+    });
+
+    module.exports = { sys, commands };
 });
 
 window.addEventListener('unload', function () {
