@@ -2,7 +2,7 @@ function FSNode(name, type) {
     Object.defineProperty(this, '_id', { value: FSNode.nextID++ });
     this.name = name;
     this.type = type;
-};
+}
 
 FSNode.nextID = 0;
 
@@ -14,17 +14,17 @@ function deserializeDir(dir) {
             return deserializeFile(child);
         } else if (child.type === 'd') {
             return deserializeDir(child);
-        };
+        }
     });
 
     children.forEach(child => folder.add(child));
 
     return folder;
-};
+}
 
 function deserializeFile(file) {
     return new FileNode(file.name, file.content);
-};
+}
 
 FSNode.deserialize = function (serialized) {
     if (!serialized) return new FolderNode('');
@@ -39,7 +39,7 @@ FSNode.prototype.getPath = function () {
     while (next) {
         out = next.name + '/' + out;
         next = next.parent;
-    };
+    }
 
     return out;
 };
@@ -49,7 +49,7 @@ function FolderNode(name) {
     FSNode.call(this, name, 'd');
 
     this.children = [];
-};
+}
 
 FolderNode.prototype = new FSNode();
 
@@ -86,7 +86,7 @@ function FileNode(name, content) {
     FSNode.call(this, name, 'f');
 
     this.content = content || '';
-};
+}
 
 FileNode.prototype = new FSNode();
 
@@ -115,7 +115,7 @@ function FS(root, pwd) {
     if (!this.exists(this.pwd) || this.get(this.pwd).type !== 'd') {
         this.pwd = '/';
     }
-};
+}
 
 FS.deserialize = function (serialized) {
     if (!serialized) return new FS();
@@ -184,7 +184,7 @@ FS.prototype.touch = function (path) {
         return;
     }
 
-    parent.add(new FileNode(Path.basename(path)))
+    parent.add(new FileNode(Path.basename(path)));
 };
 
 FS.prototype.mkdir = function (path) {

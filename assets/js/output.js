@@ -1,4 +1,4 @@
-const { $ } = require('./utils');
+import { $ } from './utils';
 
 const classes = {
     default: ['output-item'],
@@ -17,7 +17,5 @@ const handler = elementClasses => {
     };
 };
 
-module.exports = {
-    info: handler(classes.default),
-    error: handler(classes.error)
-};
+export const info = handler(classes.default);
+export const error = handler(classes.error);

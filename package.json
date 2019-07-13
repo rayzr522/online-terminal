@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "A little terminal written in JS with a virtual filesystem.",
   "scripts": {
-    "start": "parcel build assets/js/main.js -o dist/bundle.js"
+    "build": "parcel build assets/js/main.js -o dist/bundle.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run"
+    }
   },
   "repository": {
     "type": "git",

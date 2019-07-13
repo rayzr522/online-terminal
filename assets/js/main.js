@@ -1,5 +1,5 @@
-const FS = require('./fs');
-const output = require('./output');
+import { deserialize } from './fs';
+import { info, error as _error } from './output';
 
 let sys;
 let input;
@@ -7,7 +7,7 @@ let commands = {};
 
 window.addEventListener('load', function () {
     sys = JSON.parse(localStorage.getItem('sys') || '{}');
-    sys.fs = FS.deserialize(sys.fs);
+    sys.fs = deserialize(sys.fs);
 
     input = document.querySelector('.commandInput');
     input.focus();
@@ -28,7 +28,7 @@ window.addEventListener('unload', function () {
 
 
 function handleCommand(input) {
-    output.info(`$ ${input}`);
+    info(`$ ${input}`);
 
     let split = input.split(' ');
     let name = split[0].toLowerCase();
@@ -41,7 +41,7 @@ function handleCommand(input) {
         try {
             let result = command(args);
             if (result !== undefined) {
-                output.info(`${result}`);
+                info(`${result}`);
             }
         } catch (err) {
             error = err;
@@ -51,7 +51,7 @@ function handleCommand(input) {
     }
 
     if (error) {
-        output.error(error);
+        _error(error);
     }
 }
 
@@ -109,5 +109,5 @@ registerCommand('rm', 'removes a file', args => checkArgs(args, 1, 'rm <path>') 
 registerCommand('help', 'shows a list of all commands', () => {
     let keys = Object.keys(commands).sort();
     let longest = keys.reduce((mem, next) => Math.max(mem, next.length), 0);
-    return keys.map(name => `${name}${' '.repeat(longest - name.length)} : ${commands[name].description}`).join('\n')
+    return keys.map(name => `${name}${' '.repeat(longest - name.length)} : ${commands[name].description}`).join('\n');
 });
