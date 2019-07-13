@@ -5,7 +5,7 @@ const classes = {
     error: ['output-item', 'output-item-error']
 };
 
-const output = $('#commandOutput');
+const output = $('.commandOutput');
 
 const handler = elementClasses => {
     return message => {

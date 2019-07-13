@@ -2,7 +2,6 @@ const FS = require('./fs');
 const output = require('./output');
 
 let sys;
-let commandPreview;
 let input;
 let commands = {};
 
@@ -10,8 +9,7 @@ window.addEventListener('load', function () {
     sys = JSON.parse(localStorage.getItem('sys') || '{}');
     sys.fs = FS.deserialize(sys.fs);
 
-    commandPreview = document.getElementById('commandPreview');
-    input = document.getElementById('inputText');
+    input = document.querySelector('.commandInput');
     input.focus();
 
     document.addEventListener('keydown', event => {
