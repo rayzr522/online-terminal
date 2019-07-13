@@ -1,0 +1,26 @@
+{
+  "name": "online-terminal",
+  "version": "1.0.0",
+  "description": "A little terminal written in JS with a virtual filesystem.",
+  "scripts": {
+    "start": "parcel build assets/js/main.js -o dist/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rayzr522/online-terminal.git"
+  },
+  "keywords": [
+    "terminal"
+  ],
+  "author": "Rayzr522 <rayzr522@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rayzr522/online-terminal/issues"
+  },
+  "homepage": "https://github.com/Rayzr522/online-terminal",
+  "dependencies": {
+    "eslint": "^6.0.1",
+    "husky": "^3.0.0",
+    "parcel-bundler": "^1.12.3"
+  }
+}
