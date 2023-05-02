@@ -2,7 +2,7 @@
 
 > A little terminal written in JS with a virtual filesystem.
 
-*This README is a work-in-progress! Please stay tuned for more!*
+_This README is a work-in-progress! Please stay tuned for more!_
 
 ## Join Me
 

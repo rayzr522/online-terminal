@@ -1,31 +1,17 @@
 {
   "name": "online-terminal",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A little terminal written in JS with a virtual filesystem.",
   "scripts": {
-    "build": "parcel build assets/js/main.js -o dist/bundle.js"
+    "build": "vite build",
+    "dev": "vite",
+    "lint": "prettier --cache --check .",
+    "lint:fix": "prettier --cache --write .",
+    "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rayzr522/online-terminal.git"
-  },
-  "keywords": [
-    "terminal"
-  ],
-  "author": "Rayzr522 <rayzr522@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Rayzr522/online-terminal/issues"
-  },
-  "homepage": "https://github.com/Rayzr522/online-terminal",
-  "dependencies": {
-    "eslint": "^6.0.1",
-    "husky": "^3.0.0",
-    "parcel-bundler": "^1.12.3"
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
+    "vite": "^4.3.4"
   }
 }
