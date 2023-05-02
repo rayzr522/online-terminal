@@ -1,32 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-neutral-200: #ccc;
+  --color-neutral-400: #999;
+  --color-neutral-500: #888;
+  --color-neutral-900: #111;
+  --color-error-200: #f88;
+}
+
 body {
-  background: #eee;
+  background: var(--color-neutral-900);
+  color: var(--color-neutral-200);
+  font-family: monospace;
 }
 
 .container {
-  margin: auto;
+  position: absolute;
+  inset: 0;
   padding: 1em;
-  font-family: monospace;
-  font-size: 18px;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 input {
   font: inherit;
+  color: inherit;
 }
 
-.inputContainer {
-  position: absolute;
-  bottom: 2em;
-  left: 1em;
-  right: 1em;
-  height: 3em;
-  padding: 0em 1em;
-
-  border: 1px solid #999;
+.commandOutput {
+  overflow-y: scroll;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-neutral-500);
 }
 
 .commandInput {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-neutral-500);
   background: inherit;
-  border: none;
   outline: none;
 
   width: 100%;
@@ -35,20 +51,15 @@ input {
   margin: 0;
 }
 
-.commandOutput {
-  overflow-y: scroll;
-  position: absolute;
-  top: 1em;
-  left: 1em;
-  bottom: 4.5em;
-  right: 1em;
-  border: 1px solid #999;
-}
-
 .output-item {
-  padding: 10px;
+  padding: 0.5rem 0rem;
 }
 
-.output-item-error {
-  color: red;
+.output-item.hint {
+  color: var(--color-neutral-400);
+  font-style: italic;
+}
+
+.output-item.error {
+  color: var(--color-error-200);
 }
